@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-from app.routers import auth, children, vitals, alerts
+from app.routers import auth, bands, children, locations, vitals, alerts
 
 # Create all database tables
 Base.metadata.create_all(bind=engine)
@@ -27,6 +27,8 @@ app.include_router(auth.router)
 app.include_router(children.router)
 app.include_router(vitals.router)
 app.include_router(alerts.router)
+app.include_router(bands.router)       
+app.include_router(locations.router)
 
 @app.get("/")
 def root():
